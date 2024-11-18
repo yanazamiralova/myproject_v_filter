@@ -1,0 +1,29 @@
+def get_name(request):
+    if request.method == 'POST':
+        # user = request.user
+        # post_values = request.POST.copy()
+        # print(post_values)
+        # post_values['owner'] = user
+        # form = NewOrderForm(post_values)
+        form = NewOrderForm(request.POST)
+        print(request.POST)
+        print(form.is_valid())
+        for field in form:
+            print("Field Error:", field.name, field.errors)
+        form.instance.owner = request.user
+        form.instance.status = Status.objects.get(title="новая заявка")
+        # form.owner = request.user
+        # form = NewOrderForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            # post = form.save(commit=False)
+            # post.owner = request.user
+            # post.save()
+            return redirect('home')
+        # else:
+        #     raise Http404
+    else:
+        form = NewOrderForm()
+        # field = form.fields['owner']
+        # field.widget = field.hidden_widget()
+    return render(request, 'myapp/neworder.html', {'form': form})

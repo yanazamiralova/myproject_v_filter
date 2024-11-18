@@ -1,0 +1,33 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+Заявки
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h2> Пользователь: '{{ user.username }}'</h2>
+    <h2>Изменить статус заявки</h2>
+    <form method="post" class="my-form">
+    {% csrf_token %}
+      {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+      {{ form.non_field_errors }}
+      </div>
+      {% endif %}
+        <p>
+            <label style="margin-top: -10px;">Старый статус:</label>
+            {{ order.status }}
+            <label>Новый статус:</label><br>
+            <select name="status" id="">
+                {% for elem in status %}
+                <option value="{{ elem.id }}">{{ elem.title }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <input type="submit" value="Сохранить" >
+</form>
+{% else %}
+    <a href="/login">Авторизация</a>
+{% endif %}
+{% endblock %}

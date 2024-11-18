@@ -1,0 +1,95 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+ {% if user.is_superuser %}
+    <h2> Пользователь: '{{ user.username }}'</h2>
+    <h2>Заявки | АДМИНКА</h2>
+                <div class="orders-table">
+                <form action="{% url 'home' %}">
+                    <button>Обновить</button>
+                </form>
+                <form method="get" class="filter-form">
+                {{ filter.form.as_p }}
+                 <button type="submit">Фильтровать</button>
+                </form>
+                {% if filter.qs %}
+                <table style="border: none">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Дата создания <br> Дата выполнения</th>
+                        <th>Адрес <br> Вид услуги</th>
+                        <th>ФИО <br> Телефон</th>
+                        <th>Тип оплаты</th>
+                        <th>Статус</th>
+                        <th></th>
+                    </tr>
+                    {% for elem in filter.qs %}
+                    <tr>
+                        <td>{{ elem.id }}</td>
+                        <td>{{ elem.created }}<br>
+                       {{ elem.orderdatetime }}</td>
+                        <td>{{ elem.adress }}<br>
+                            {{ elem.service }}
+                        </td>
+                        <td>{{ elem.owner.last_name }} {{ elem.owner.first_name }} {{elem.owner.patronymic}}<br>
+                            {{ elem.contact_phone }}</td>
+                        <td>{{ elem.payment }}</td>
+                        <td>{{ elem.status }}</td>
+                         <td><a href="edit/{{elem.id}}">Изменить</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>У нас нет записей</p>
+                {% endif %}
+ {% else %}
+    <h2> Пользователь: '{{ user.username }}'</h2>
+    <h2>Заявки</h2>
+            <div class="orders-table">
+                <form action="{% url 'neworder' %}">
+                    <button>Сформировать</button>
+                </form>
+                <form method="get" class="filter-form">
+                {{ filter.form.as_p }}
+                 <button type="submit">Фильтровать</button>
+                </form>
+                {% if filter.qs %}
+                <table style="border: none">
+                    <tr>
+                        <th>Номер</th>
+                        <th>Дата создания <br> Дата выполнения</th>
+                        <th>Адрес <br> Вид услуги</th>
+                        <th>ФИО <br> Телефон</th>
+                        <th>Тип оплаты</th>
+                        <th>Статус</th>
+                    </tr>
+                    {% for elem in filter.qs %}
+                    <tr>
+                        <td>{{ elem.id }}</td>
+                        <td>{{ elem.created }}<br>
+                       {{ elem.orderdatetime }}</td>
+                        <td>{{ elem.adress }}<br>
+                            {{ elem.service }}
+                        </td>
+                        <td>{{ user.last_name }} {{ user.first_name }} {{user.patronymic}}<br>
+                            {{ elem.contact_phone }}</td>
+                        <td>{{ elem.payment }}</td>
+                        <td>{{ elem.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>У нас нет записей</p>
+                {% endif %}
+            </div>
+ {% endif %}
+{% else %}
+    <a href="/login">Авторизация</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,175 @@
+:root {
+    --color-primary: #143151;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: left;
+    flex-wrap: nowrap;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: var(--color-primary);
+    height: 100vh;
+    overflow: auto;
+    padding-left: 60px;
+    padding-top: 23px;
+}
+
+.logo img {
+    width: 40px;
+}
+
+.logo-text {
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 200;
+    margin-top: 18px;
+}
+
+.main-menu {
+    margin-top: 132px;
+}
+
+.main-menu li {
+    display: block;   
+    margin-bottom: 24px;     
+}
+
+.main-menu li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+main {
+    padding: 23px 20px;
+    /* background-color: #fefff0; */
+    display: inline;
+    width: 100%;
+}
+
+main h2 {
+    margin-top: 9px;
+}
+
+.my-form {
+    margin-left: 320px;
+    margin-top: 100px;
+    border-radius: 25px 25px 0 0;
+    padding: 50px 20px 30px 20px;
+    background-color: var(--color-primary);
+    width: 285px;
+    color: #fff;
+}
+
+.my-form label {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.my-form input[type="text"],
+input[type="password"],
+input[type="email"]{
+    margin-bottom: 22px;
+    margin-top: 3px;
+    height: 37px;
+    width: 240px;
+    font-size: 18px;
+}
+
+select {
+    margin-bottom: 22px;
+    margin-top: 3px;
+    height: 37px;
+    width: 240px;
+    font-size: 18px;
+}
+
+
+button, input[type="submit"] {
+    background-color: #37D1F7;
+    height: 33px;
+    padding: 9px 22px;
+    border-radius: 25px;
+    border: none;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.filter-form {
+    border: 2px solid #143151;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 700px;
+}
+
+/* Заявки */
+.orders-table {
+    margin-top: 36px;
+}
+
+table {
+    margin-top: 24px;
+}
+
+table,
+tr {
+    border: 1px solid var(--color-primary);
+    border-collapse: collapse;
+}
+
+table tr:nth-child(1) {
+    border: none;
+}
+
+
+table td {
+    padding: 6px 15px;
+}
+
+table th {
+    background-color: var(--color-primary);
+    padding: 6px 0px 6px 15px;
+    font-weight: 200;
+    color: #fff;
+    text-align: left;
+}
+
+table th:nth-child(1) {
+    border-radius: 25px 0 0 0;
+}
+
+table th:nth-last-child(1) {
+    border-radius: 0 25px 0 0;
+}
+
+.green {
+    background-color: rgba(55, 247, 62, 0.2);
+}
+
+.red {
+    background-color: rgba(158, 0, 0, 0.2);
+}
+.filter-form input{
+    height: 30px;
+    margin: auto 10px;
+    margin-top: 10px;
+}
+.filter-form select{
+    height: 30px;
+    margin: auto 10px;
+    margin-top: 10px;
+}
+
+
